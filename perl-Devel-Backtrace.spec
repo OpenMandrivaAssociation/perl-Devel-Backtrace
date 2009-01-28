@@ -1,6 +1,6 @@
 
 %define realname   Devel-Backtrace
-%define version    0.11
+%define version    0.12
 %define release    %mkrel 1
 
 Name:       perl-%{realname}
