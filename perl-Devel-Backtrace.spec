@@ -1,34 +1,30 @@
+%define upstream_name    Devel-Backtrace
+%define upstream_version 0.12
 
-%define realname   Devel-Backtrace
-%define version    0.12
-%define release    %mkrel 1
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
 
-Name:       perl-%{realname}
-Version:    %{version}
-Release:    %{release}
-License:    GPL or Artistic
-Group:      Development/Perl
 Summary:    Object-oriented backtrace
-Source:     http://www.cpan.org/modules/by-module/Devel/%{realname}-%{version}.tar.gz
-Url:        http://search.cpan.org/dist/%{realname}
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: perl-devel
+License:    GPL+ or Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Devel/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires: perl(Class::Accessor)
 BuildRequires: perl(String::Escape)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Module::Build::Compat)
-
 BuildArch: noarch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This class is a nice way to access all the information caller provides on a
 given level.  It is used by L<Devel::Backtrace>, which generates an array of
 all trace points.
 
-
-
 %prep
-%setup -q -n %{realname}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -49,6 +45,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc Changes META.yml LICENSE README
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
-
 
